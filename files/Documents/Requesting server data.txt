@@ -1,0 +1,11 @@
+<b>Requesting data from the server:</b>
+<br><br>
+The File explorer is the only application dependant on server communication, because the files displayed in the File explorer represent real files located on the server. Upon starting the File explorer and opening displayed files, an AJAX request is made to the server.
+<br><br>
+This AJAX query sends the currently displayed folder as a string, over an HTTP POST connection. The server-handler checks this file path and sends back an array of contents of that file. This array is filtered on the client-side, and the accepted files / folders get displayed in the client's browser.
+<br><br>
+Accepted file types are: <i>.txt</i>, <i>.png</i>, <i>.jpg</i>, <i>.jpeg</i> and <i>.mp3</i>. When one of these files is selected / opened, a final request is made to the server to collect all information about this file. This information gets sent back to the client, and gets passed on to the function that is responsible for opening that specific file type.
+<br><br>
+The highest folder a visitor can traverse to is <i>/files</i>. Any request to go higher than this will be denied. This root folder can be changed in the PHP handler file.
+<br><br>
+The AJAX request is created using jQuery. The AJAX request code can be found in <i>apps.js</i>, starting from the corresponding comment named "// file explorer". The server-handler code can be found in <i>handler.php</i>.

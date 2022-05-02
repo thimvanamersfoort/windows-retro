@@ -1,0 +1,11 @@
+<b>Displaying of the different pages:</b>
+<br><br>
+The index file is the only actual HTML file located on the server. The main HTML body consists of different divs, each with their own custom id. These are the page divs. Page divs take up the entire available viewport, with no overflow.
+<br><br>
+Because the overflow is set to hidden in the entire HTML file, there can't be more than 1 page div viewed at a time. The div that is shown can be set by hiding all other divs. This is done using the CSS rule "display: none". The website currently contains 3 page divs:
+<br><br>
+<ol>
+<li><b>Login:</b> This page is shown on first visit of the website, and contains no movable elements. The only card that is available, contains a login form where the visitor fills in their username. Upon continuing, the visitor is redirected to the Index page div. <i>See "Logging in.txt" for more info about the login process.</i></li>
+<li><b>Index:</b> This is the main page of the website. From here, users can access all available apps and the 2 other pages. <i>See "Layout.txt" for more info about the index page and its design.</i></li>
+<li><b>Boot:</b> This page is dedicated to an animation that is toggled by the "Reboot now" button. The user is redirected to a console-like page, where commands are typed out that describe the reboot of the system. Upon completion of this reboot animation, the user is taken back to the login page. The commands that are shown don't actually do anything.</li>
+</ol>

@@ -1,0 +1,9 @@
+<b>Explanation of the login-script:</b>
+<br><br>
+To personalize the user-experience, we use cookies that store data about the user. When first visiting the website, the visitor will be asked to log in with a personal username. This username is stored in a cookie. Because the entire website consists of 1 HTML page, a visitor would get redirected to the login part of the website when the browser refreshes.
+<br><br>
+To prevent this, the page checks if the username cookie is present or not. If the cookie is present, the main part in the web-page is shown and all other parts are hidden. An introduction message is displayed when showing the index-page after logging in. 
+<br><br>
+Users can return to the login menu by clicking on Log out or initiating the reboot animation. All available cookies are deleted with these actions, thus making logging in again neccessary.
+<br><br>
+All functions for creating and deleting cookies are located in the <i>main.js</i> file.

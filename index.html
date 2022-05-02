@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <title>Windows Retro</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon.png">
+    <meta property="og:title" content="Windows Retro">
+    <meta property="og:description" content="A classic Windows OS user-experience.">
+    <meta property="og:image" content="assets/img/favicon.png">
+    <meta property="og:url" content="http://windows-retro.net/">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/pixel.css">
+</head>
+
+<body onload="loginCheck()">
+    
+    <div id="boot" class="hidden">
+        <div id="boot-logo-desktop">
+<pre id="boot-logo">
+██╗    ██╗██╗███╗   ██╗██████╗  ██████╗ ██╗    ██╗███████╗             
+██║    ██║██║████╗  ██║██╔══██╗██╔═══██╗██║    ██║██╔════╝             
+██║ █╗ ██║██║██╔██╗ ██║██║  ██║██║   ██║██║ █╗ ██║███████╗             
+██║███╗██║██║██║╚██╗██║██║  ██║██║   ██║██║███╗██║╚════██║             
+╚███╔███╔╝██║██║ ╚████║██████╔╝╚██████╔╝╚███╔███╔╝███████║             
+ ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝  ╚══╝╚══╝ ╚══════╝             
+██████╗ ███████╗████████╗██████╗  ██████╗   ██╗   ██╗ ██╗    ██████╗ 
+██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗  ██║   ██║███║   ██╔═████╗
+██████╔╝█████╗     ██║   ██████╔╝██║   ██║  ██║   ██║╚██║   ██║██╔██║
+██╔══██╗██╔══╝     ██║   ██╔══██╗██║   ██║  ╚██╗ ██╔╝ ██║   ████╔╝██║
+██║  ██║███████╗   ██║   ██║  ██║╚██████╔╝   ╚████╔╝  ██║██╗╚██████╔╝
+╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝     ╚═══╝   ╚═╝╚═╝ ╚═════╝ 
+---------------------------------------------------------------------
+</pre>            
+        </div>
+        <div id="boot-logo-touchscreen">
+<pre id="boot-logo">
+ _       ___           __                        
+| |     / (_)___  ____/ /___ _      _______      
+| | /| / / / __ \/ __  / __ \ | /| / / ___/      
+| |/ |/ / / / / / /_/ / /_/ / |/ |/ (__  )       
+|__/|__/_/_/ /_/\__,_/\____/|__/|__/____/__ ____ 
+   / __ \___  / /__________     | |  / &lt;  // __ \
+  / /_/ / _ \/ __/ ___/ __ \    | | / // // / / /
+ / _, _/  __/ /_/ /  / /_/ /    | |/ // // /_/ / 
+/_/ |_|\___/\__/_/   \____/     |___//_(_)____/  
+
+-------------------------------------------------
+</pre>
+        </div>
+
+        <div id="boot-text-outer">
+            <span id="boot-text-inner"></span>
+        </div>
+        
+    </div>
+    <div id="login">
+
+        <div class="login-container">
+            <div class="card card-tertiary" id="login-card">
+                <div class="card-header text-center" style="height: max-content;">
+                    <span>Welcome to the Windows Retro web-experience</span>
+                </div>
+                <div class="card-body" >
+                    <p class="card-text">Please enter your username to continue:</p>
+                    <p class="card-text hidden error" id="error-msg">Username can not be empty!</p>
+                    <input id="username" type="text" class="text-input" maxlength="12">
+                    <div style="height: 2rem;"></div>
+                    <button class="btn btn-primary" type="button" id="login-button">
+                        <span style="font-family: 'Windows 95';">Login</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="index" class="hidden">
+        <div class="container-main">
+
+            <!-- Icons -->
+            <div id="logout-icon" class="app-icon-lg" ondblclick="logOut()">
+                <img src="assets/img/change-user.png">
+                <p>Log out</p>
+            </div>
+            <div id="welcome-icon" class="app-icon-lg" ondblclick="displayApp('welcome')">
+                <img src="assets/img/help-computer.png">
+                <p>Introduction</p>
+            </div>
+            <div id="calc-icon" class="app-icon-lg" ondblclick="displayApp('calc')">
+                <img src="assets/img/application.png">
+                <p>Calculator</p>
+            </div>
+            <div id="about-icon" class="app-icon-lg" ondblclick="displayApp('about')">
+                <img src="assets/img/help.png">
+                <p>About us</p>
+            </div>            
+            <div id="fullscreen-icon" class="app-icon-lg" ondblclick="toggleFullscreen()">
+                <img src="assets/img/fullscreen-toggle.png">
+                <p>Toggle fullscreen</p>
+            </div>
+            <div id="explorer-icon" class="app-icon-lg" ondblclick="displayApp('explorer')">
+                <img src="assets/img/folder.png">
+                <p>File explorer</p>
+            </div>
+
+            <!-- Cards -->
+            <div id="welcome-card" class="card card-tertiary container-basic hidden">
+                <div class="card-header draggable" id="welcome-header">
+                    <div class="card-handle" style="width: 95%; float: left; height: 21px;">
+                        <img src="assets/img/help-computer.png" class="app-icon-sm">
+                        <span id="custom-name">Hello!</span>
+                    </div>
+                    <div style="width: 5%; float: left; height: 21px;">
+                        <button class="close" onclick="hide('welcome');">X</button>
+                    </div>
+                </div>
+                <div class="card-body" >
+                    <p class="card-text" style="margin: 4px 0;">Welcome to the interactive Windows Retro web-experience. 
+                        Buttons are toggled by double-clicking (mobile too). For more information,
+                        please refer to the "About us" program, or look at the documents 
+                        inside the File explorer. Have fun exploring!<br><br>
+                        <i>The Windows Retro team</i>
+                    </p>
+                </div>
+            </div>
+            <div id="calc-card" class="card card-tertiary container-basic hidden" style="width: max-content;">
+                <div class="card-header draggable" id="calc-header">
+                    <div class="card-handle" style="width: 95%; float: left; height: 21px;">
+                        <img src="assets/img/application.png" class="app-icon-sm">
+                        <span>Calculator</span>
+                    </div>
+                    <div style="width: 5%; float: left; height: 21px;">
+                        <button class="close" onclick="hide('calc');">X</button>
+                    </div>
+                </div>
+                <div class="card-body" style="text-align: center;">
+
+                    <input id="calc-output" type="text" class="text-input calc-output" readonly><br>
+                    <div style="height: 0.4rem;"></div>
+                    <div class="button-grid">
+                        <button class="btn btn-primary btn-calc" value="7">7</button>
+                        <button class="btn btn-primary btn-calc" value="8">8</button>
+                        <button class="btn btn-primary btn-calc" value="9">9</button>
+                        <button class="btn btn-primary btn-calc" value="/">/</button>
+                        <button class="btn btn-primary btn-calc" value="4">4</button>
+                        <button class="btn btn-primary btn-calc" value="5">5</button>
+                        <button class="btn btn-primary btn-calc" value="6">6</button>
+                        <button class="btn btn-primary btn-calc" value="*">X</button>
+                        <button class="btn btn-primary btn-calc" value="1">1</button>
+                        <button class="btn btn-primary btn-calc" value="2">2</button>
+                        <button class="btn btn-primary btn-calc" value="3">3</button>
+                        <button class="btn btn-primary btn-calc" value="-">-</button>
+                        <button class="btn btn-primary btn-calc" value="0">0</button>
+                        <button class="btn btn-primary btn-calc" value=".">.</button>
+                        <button class="btn btn-primary btn-calc" value="+">+</button>
+                        <button class="btn btn-primary btn-calc" value="=">=</button>
+                        <button class="btn btn-primary btn-calc" value="C" id="calc-delete">C</button>
+                        <button class="btn btn-primary btn-calc" value="AC" id="calc-clear">AC</button>
+                    </div>
+                </div>
+            </div>
+            <div id="explorer-card" class="card card-tertiary container-basic hidden">
+                <div class="card-header draggable" id="explorer-header">
+                    <div class="card-handle" style="width: 95%; float: left; height: 21px;">
+                        <img src="assets/img/folder.png" class="app-icon-sm">
+                        <span>File explorer</span>
+                    </div>
+                    <div style="width: 5%; float: left; height: 21px;">
+                        <button class="close" onclick="hide('explorer');">X</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="file-listing" id="file-listing">
+                        <!--hier komen de files te staan die javascript van de server afleest
+                            via AJAX requests naar handler.php
+                            Zie hiervoor de files apps.js en handler.php -->
+                    </div>
+                </div>
+            </div>
+            <div id="error-card" class="card card-tertiary container-basic hidden" style="width: max-content;">
+                <div class="card-header draggable" id="error-header">
+                    <div class="card-handle" style="width: 95%; float: left; height: 21px;">
+                        <img src="assets/img/error.png" class="app-icon-sm">
+                        <span>Error</span>
+                    </div>
+                    <div style="width: 5%; float: left; height: 21px;">
+                        <button class="close" onclick="hide('error');">X</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">This folder is not available!</p>                        
+                </div>
+            </div>
+            <div id="picture-card" class="card card-tertiary container-basic hidden">
+                <div class="card-header draggable" id="picture-header">
+                    <div class="card-handle" style="width: 95%; float: left; height: 21px;">
+                        <img src="assets/img/image.png" class="app-icon-sm">
+                        <span id="picname">Photo viewer</span>
+                    </div>
+                    <div style="width: 5%; float: left; height: 21px;">
+                        <button class="close" onclick="hide('picture');">X</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="picture-container">
+                        <img src="" class="picture" id="picture">
+                    </div>
+                </div>
+            </div>
+            <div id="text-card" class="card card-tertiary container-basic hidden">
+                <div class="card-header draggable" id="text-header">
+                    <div class="card-handle" style="width: 95%; float: left; height: 21px;">
+                        <img src="assets/img/text.png" class="app-icon-sm">
+                        <span id="textname">Text reader</span>
+                    </div>
+                    <div style="width: 5%; float: left; height: 21px;">
+                        <button class="close" onclick="hide('text');">X</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="text-container">
+                        <p>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="music-card" class="card card-tertiary container-basic hidden" style="width: max-content;">
+                <div class="card-header draggable" id="music-header">
+                    <div class="card-handle" style="width: 95%; float: left; height: 21px;">
+                        <img src="assets/img/music.png" class="app-icon-sm">
+                        <span id="musicname">Music player</span>
+                    </div>
+                    <div style="width: 5%; float: left; height: 21px;">
+                        <button class="close" id="music-hide">X</button>
+                    </div>
+                </div>
+                <div class="card-body" style="padding: 8.5px;">
+                    <div class="music-row">
+                        <img src="assets/img/music-lg.png">
+                    </div>
+                    <div class="music-row space-between">
+                        <span id="currentTime"></span>
+                        <span id="songTitle"></span>
+                        <span id="duration"></span>
+                    </div>
+                    <div class="music-row">
+                        <input type="range" id="songProgress">
+                    </div>
+                    <div class="music-row justify-center">
+                        <button class="btn btn-primary" id="volumeDown">-</button>
+                        <button class="btn btn-primary" id="rewind">&lt;&lt;</button>
+                        <button class="btn btn-primary" id="playPause">ll</button>
+                        <button class="btn btn-primary" id="fastForward">&gt;&gt;</button>
+                        <button class="btn btn-primary" id="volumeUp">+</button>
+                    </div>
+                </div>
+            </div>            
+            <div id="about-card" class="card card-tertiary container-basic hidden">
+                <div class="card-header draggable" id="music-header">
+                    <div class="card-handle" style="width: 95%; float: left; height: 21px;">
+                        <img src="assets/img/help.png" class="app-icon-sm">
+                        <span id="musicname">About us</span>
+                    </div>
+                    <div style="width: 5%; float: left; height: 21px;">
+                        <button class="close" onclick="hide('about')">X</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="text-container">
+                        <h3><b>About this project:</b></h3>
+                        <p>We (<i>Jesse Dragt and Thim v. Amersfoort</i>) made this website as a school 
+                        project for computer science. The goal was to create a responsive website using
+                        client-side code only. We decided to give this assignment our own twist, and we 
+                        created Windows Retro. A fully functioning, client-side only web-experience that
+                        takes the visitor back to a simpler era. The design is sleek and simple, and the 
+                        various "Applications" that we needed to develop gave us an opportunity to use new
+                        and unfamiliar plugins and technologies. <br><br>
+
+                        The technologies we used to make this project possible are not entirely Vanilla 
+                        JavaScript. We used some JS plugins / libraries for functions like design, 
+                        responsiveness and ease of coding. These plugins (and other dependencies) we used 
+                        are listed below. We also made sure to keep our HTML / CSS layout as general and 
+                        accessible as possible. We included a basic documentation of our code in the 
+                        <i>File Explorer</i> program, under the folder Documents.<br><br>
+                        
+                        If you're interested in building your own applications / infrastructure with this
+                        design, you can download the source-code using the link below 
+                        (direct download). The source code is free, so please refrain from (re)selling versions 
+                        of it. Also, credits to our work would be appreciated.<br>
+                        </p>
+                        <h4 style="margin-top: 0.8rem; margin-bottom: 0.4rem;"><b>Plugins and dependencies:</b></h4>
+                        <ol>
+                            <li><a href="http://jquery.com/">jQuery</a>: A lightweight JS library that simplifies 
+                                and shortens JS code, which comes with many different prebuilt functions. Used regularly
+                                in the entire project.</li>
+                            <li><a href="http://jqueryui.com/">jQuery UI</a>: An extension of jQuery that is 
+                                used for more complicated UI code. Used in the project to implement drag&drop.</li>
+                            <li><a href="http://github.com/furf/jquery-ui-touch-punch">jQuery Touch Punch</a>:
+                            A small extension that overrides normal jQuery UI click-events with their corresponding
+                            touch-events, to ensure compatibility on mobile devices.</li>
+                            <li><a href="http://typeitjs.com/">TypeIt</a>: An animation library we used for the reboot-
+                            sequence. It simplifies the code to create a typewriter-like effect / animation.</li>
+                            <li><a href="https://github.com/themesberg/windows-95-ui-kit">Windows 95 UI Kit</a>: 
+                            A CSS template we used for the basic design of buttons, cards, and icons.</li>
+                            <li><a href="https://win98icons.alexmeub.com/">Windows 98 Icons</a>: A free Windows 98
+                            icon repository, created by Alex Meub. This is where almost all of the icons we used come from.</li>
+                        </ol>
+                        <h4 style="margin-top: 1rem; margin-bottom: 0.4rem;"><b>Download source code:</b></h4>
+                        <br>
+                        <a href="downloads/Windows Retro Source Code.zip" download class="btn btn-primary btn-calc" style="text-decoration: none;">Download now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Start menu -->
+            <div class="home-task-content card card-tertiary hidden" id="home-menu">
+                <div class="home-task-item" style="justify-content: center;">
+                    <img src="assets/img/logo-color.png" class="app-icon-sm">
+                    <span id="custom-name2">Welcome!</span>
+                </div>
+
+                <a class="home-task-item" ondblclick="displayApp('welcome')">
+                    <img src="assets/img/help-computer.png" class="app-icon-sm">
+                    <span>Introduction</span>
+                </a>
+                <a class="home-task-item" ondblclick="displayApp('calc')">
+                    <img src="assets/img/application.png" class="app-icon-sm">
+                    <span>Calculator</span>
+                </a>
+                <a class="home-task-item" ondblclick="displayApp('explorer')">
+                    <img src="assets/img/folder.png" class="app-icon-sm">
+                    <span>File explorer</span>
+                </a>
+                <a class="home-task-item" ondblclick="toggleFullscreen()">
+                    <img src="assets/img/fullscreen-toggle.png" class="app-icon-sm">
+                    <span>Toggle fullscreen</span>
+                </a>
+                <a class="home-task-item" ondblclick="displayApp('about')">
+                    <img src="assets/img/help.png" class="app-icon-sm">
+                    <span>About us</span>
+                </a>
+                <a class="home-task-item" ondblclick="logOut()">
+                    <img src="assets/img/change-user.png" class="app-icon-sm">
+                    <span>Log out</span>
+                </a>
+                <a class="home-task-item" ondblclick="showReboot()">
+                    <img src="assets/img/monitor-black.png" class="app-icon-sm">
+                    <span>Reboot PC</span>
+                </a>
+
+
+            </div>
+
+        </div>
+        <div class="container-bottom">
+
+            <!-- Taskbar buttons -->
+            <button class="btn btn-primary btn-taskbar" id="home-task">
+                <img src="assets/img/logo-color.png" class="app-icon-sm">
+                <span>Start</span>
+            </button>
+            <button class="btn btn-primary btn-taskbar hidden" id="calc-task" onclick="displayApp('calc')">
+                <img src="assets/img/application.png" class="app-icon-sm">
+            </button>
+            <button class="btn btn-primary btn-taskbar hidden" id="welcome-task" onclick="displayApp('welcome')">
+                <img src="assets/img/help-computer.png" class="app-icon-sm">
+            </button>
+            <button class="btn btn-primary btn-taskbar hidden" id="explorer-task" onclick="displayApp('explorer')">
+                <img src="assets/img/folder.png" class="app-icon-sm">
+            </button>
+            <button class="btn btn-primary btn-taskbar hidden" id="error-task" onclick="displayApp('error')">
+                <img src="assets/img/error.png" class="app-icon-sm">
+            </button>
+            <button class="btn btn-primary btn-taskbar hidden" id="picture-task" onclick="displayApp('picture')">
+                <img src="assets/img/image.png" class="app-icon-sm">
+            </button>
+            <button class="btn btn-primary btn-taskbar hidden" id="text-task" onclick="displayApp('text')">
+                <img src="assets/img/text.png" class="app-icon-sm">
+            </button>
+            <button class="btn btn-primary btn-taskbar hidden" id="music-task" onclick="displayApp('music')">
+                <img src="assets/img/music.png" class="app-icon-sm">
+            </button>            
+            <button class="btn btn-primary btn-taskbar hidden" id="about-task" onclick="displayApp('about')">
+                <img src="assets/img/help.png" class="app-icon-sm">
+            </button>
+
+            <button class="btn btn-primary btn-taskbar float-right">
+                <span id="date"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Plugins -->
+    <script src="assets/plugins/jquery.min.js"></script>
+    <script src="assets/plugins/jquery-ui.min.js"></script>
+    <script src="assets/plugins/jquery-ui.touch-punch.min.js"></script>
+    <script src="assets/plugins/typeit.min.js"></script>
+
+    <!-- Core -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/login.js"></script>
+    <script src="assets/js/apps.js"></script>
+    <script src="assets/js/boot.js"></script>
+
+</body>
+
+</html>

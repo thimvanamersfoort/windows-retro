@@ -1,0 +1,11 @@
+<b>The main elements in the layout</b>
+<br><br>
+The web-page itself is a fixed with and height, and all forms of scrolling are forbidden. This, together with the fullscreen option, gives it the desktop feeling everyone is used to. Because of this, we can include multiple different pages in 1 file. This rapidly increases the loading time, and makes backend coding much more efficient and sustainable.
+<br><br>
+The main page consists of 3 different main elements: the toolbar, the icons and the applications. The toolbar, in webpages also known as the nav, contains a list of currently active applications, an original Windows start menu and a small div on the right, that displays the date and time, just like any Windows OS toolbar that you're used to.
+<br><br>
+The icons are the gateway to your applications. These are automatically placed on the top-left of your desktop and are movable in a grid on non-touchscreen devices. A simple double-click opens the application or function that you select. Some applications don't have their own icons because these applications are dependant on varying content, such as the Text reader and the Photo Viewer.
+<br><br>
+We made the applications as individual divs, all with a shared layout and basic CSS-styles. These apps are shown and hidden using the CSS display feature. The divs are preloaded with JS and HTML, and the displaying of the div is toggled with its corresponding JS function. These applications are freely movable, and multiple applications can be opened at once. Resizing and maximizing / minimizing of applications is not available (yet).
+<br><br>
+<i>For info about different pages, refer to Pages.txt</i>
